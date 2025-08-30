@@ -11,9 +11,13 @@ import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MoneySelectField } from "./moneySelectField";
 import { MoneyInputField } from "./moneyInputField";
-import { useState } from "react";
-import { formatCurrency } from "@/shared/utils/formatInputValues";
+import { useEffect, useState } from "react";
+import {
+  formatBrlStringToNumber,
+  formatCurrency,
+} from "@/shared/utils/formatInputValues";
 import type { ISelectOptions } from "@/shared/interfaces/ISelectOptions";
+import { MoneyConversorService } from "@/shared/services/moneyConversorService/moneyConversorService";
 
 export function MoneyConversorForm() {
   const [amount, setAmount] = useState(formatCurrency("0"));
@@ -22,11 +26,50 @@ export function MoneyConversorForm() {
   const [fromCurrency, setFromCurrency] = useState("BRL");
   const [toCurrency, setToCurrency] = useState("EUR");
 
+  const [conversionRate, setConversionRate] = useState<number | null>(null);
+
   const [selectOptions, setSelectOptions] = useState<ISelectOptions[]>([
     { value: "BRL", label: "Real Brasileiro" },
     { value: "EUR", label: "Euro" },
     { value: "USD", label: "Dólar Americano" },
   ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const currencies = await MoneyConversorService.getAvailableCurrencies();
+      setSelectOptions(currencies);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchConversionRate = async () => {
+      const rate = await MoneyConversorService.getConversionRate(
+        fromCurrency,
+        toCurrency
+      );
+
+      setConversionRate(rate);
+    };
+
+    fetchConversionRate();
+  }, [fromCurrency, toCurrency]);
+
+  useEffect(() => {
+    const fetchConversion = async () => {
+      const numericAmount = formatBrlStringToNumber(amount);
+
+      const converted = await MoneyConversorService.convertCurrency(
+        numericAmount,
+        fromCurrency,
+        toCurrency
+      );
+      setConvertedAmount(formatCurrency(converted));
+    };
+
+    fetchConversion();
+  }, [amount, fromCurrency, toCurrency]);
 
   const handleInvertCurrencies = () => {
     const previousFromCurrency = fromCurrency;
@@ -46,7 +89,9 @@ export function MoneyConversorForm() {
           Taxa de câmbio comercial
         </CardTitle>
         <CardDescription className="text-muted-foreground text-base">
-          R$1 BRL = 0,1576 EUR
+          {conversionRate
+            ? `1 ${fromCurrency} = ${conversionRate} ${toCurrency}`
+            : "Carregando..."}
         </CardDescription>
       </CardHeader>
 

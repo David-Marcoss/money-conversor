@@ -16,3 +16,14 @@ export const formatCurrency = (value: string | number): string => {
     maximumFractionDigits: 2,
   })}`;
 };
+
+// Formata string de moeda para número
+export function formatBrlStringToNumber(value: string): number {
+  if (!value) return 0;
+
+  let numeric = value.replace(/[^\d.,]/g, "");
+
+  numeric = numeric.replace(/\./g, "").replace(",", ".");
+
+  return parseFloat(numeric);
+}
