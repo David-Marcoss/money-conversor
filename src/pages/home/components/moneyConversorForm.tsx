@@ -28,6 +28,16 @@ export function MoneyConversorForm() {
     { value: "USD", label: "Dólar Americano" },
   ]);
 
+  const handleInvertCurrencies = () => {
+    const previousFromCurrency = fromCurrency;
+    setFromCurrency(toCurrency);
+    setToCurrency(previousFromCurrency);
+
+    const previousConvertedAmount = convertedAmount;
+    setConvertedAmount(amount);
+    setAmount(previousConvertedAmount);
+  };
+
   return (
     <Card className="flex flex-col w-[650px] h-[520px] shadow-xl rounded-2xl bg-card text-card-foreground">
       {/* Cabeçalho */}
@@ -50,8 +60,13 @@ export function MoneyConversorForm() {
           />
         </div>
 
-        <div className="flex items-center justify-center">
-          <ArrowUpDown className="w-6 h-6 text-muted-foreground" />
+        <div className="flex items-center justify-center w-full">
+          <button
+            className="flex items-center justify-center bg-yellow-500 rounded-full w-12 h-12 hover:opacity-80 transition-opacity"
+            onClick={handleInvertCurrencies}
+          >
+            <ArrowUpDown className="w-6 h-6 text-muted-foreground" />
+          </button>
         </div>
 
         <div className="flex items-end justify-between gap-4">
