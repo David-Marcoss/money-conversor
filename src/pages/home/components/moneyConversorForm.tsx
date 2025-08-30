@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card";
 
 import { ArrowUpDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { MoneySelectField } from "./moneySelectField";
 import { MoneyInputField } from "./moneyInputField";
 import { useEffect, useState } from "react";
@@ -46,8 +45,8 @@ export function MoneyConversorForm() {
   useEffect(() => {
     const fetchConversionRate = async () => {
       const rate = await MoneyConversorService.getConversionRate(
-        fromCurrency,
-        toCurrency
+        toCurrency,
+        fromCurrency
       );
 
       setConversionRate(rate);
@@ -119,6 +118,7 @@ export function MoneyConversorForm() {
             label="Valor Convertido: "
             value={convertedAmount}
             setValue={setConvertedAmount}
+            disabled
           />
           <MoneySelectField
             value={toCurrency}
@@ -130,7 +130,7 @@ export function MoneyConversorForm() {
 
       {/* Rodapé */}
       <CardFooter className="flex justify-end">
-        <Button className="w-full sm:w-auto">Converter</Button>
+        <span className="text-gray-400">Desenvolvido por David Marcos</span>
       </CardFooter>
     </Card>
   );
