@@ -11,8 +11,16 @@ import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MoneySelectField } from "./moneySelectField";
 import { MoneyInputField } from "./moneyInputField";
+import { useState } from "react";
+import { formatCurrency } from "@/shared/utils/formatInputValues";
 
 export function MoneyConversorForm() {
+  const [amount, setAmount] = useState(formatCurrency("0"));
+  const [convertedAmount, setConvertedAmount] = useState(formatCurrency("0"));
+
+  const [fromCurrency, setFromCurrency] = useState("BRL");
+  const [toCurrency, setToCurrency] = useState("EUR");
+
   return (
     <Card className="flex flex-col w-[650px] h-[520px] shadow-xl rounded-2xl bg-card text-card-foreground">
       {/* Cabeçalho */}
@@ -27,7 +35,7 @@ export function MoneyConversorForm() {
 
       <CardContent className="flex-1 flex flex-col justify-center gap-6 px-6">
         <div className="flex items-end justify-between gap-4">
-          <MoneyInputField />
+          <MoneyInputField value={amount} setValue={setAmount} />
           <MoneySelectField />
         </div>
 
@@ -36,7 +44,10 @@ export function MoneyConversorForm() {
         </div>
 
         <div className="flex items-end justify-between gap-4">
-          <MoneyInputField />
+          <MoneyInputField
+            value={convertedAmount}
+            setValue={setConvertedAmount}
+          />
           <MoneySelectField />
         </div>
       </CardContent>

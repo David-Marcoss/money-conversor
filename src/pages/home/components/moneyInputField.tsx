@@ -1,6 +1,12 @@
 import { Input } from "@/components/ui/input";
+import { formatCurrency } from "@/shared/utils/formatInputValues";
 
-export function MoneyInputField() {
+interface IMoneyInputField {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export function MoneyInputField({ value, setValue }: IMoneyInputField) {
   return (
     <div className="flex flex-col w-full gap-2">
       <label
@@ -11,9 +17,13 @@ export function MoneyInputField() {
       </label>
       <Input
         id="amount"
-        type="number"
+        type="text"
         placeholder="Digite o valor"
         className="h-12"
+        value={value}
+        onChange={(e) => {
+          setValue(formatCurrency(e.target.value));
+        }}
       />
     </div>
   );
