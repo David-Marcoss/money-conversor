@@ -7,14 +7,15 @@ export const formatCurrency = (value: string | number): string => {
   }
 
   value = value.replace(/\D/g, "");
-  if (!value) return "R$ 0,00";
+  if (!value) return "0,00";
 
-  return `R$ ${isNegative ? "-" : ""} ${(
-    parseFloat(value) / 100
-  ).toLocaleString("pt-BR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
+  return `${isNegative ? "-" : ""} ${(parseFloat(value) / 100).toLocaleString(
+    "pt-BR",
+    {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }
+  )}`;
 };
 
 // Formata string de moeda para número
