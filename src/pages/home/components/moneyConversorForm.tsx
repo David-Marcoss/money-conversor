@@ -81,7 +81,7 @@ export function MoneyConversorForm() {
   };
 
   return (
-    <Card className="flex flex-col w-[650px] h-[520px] shadow-xl rounded-2xl bg-card text-card-foreground">
+    <Card className="flex flex-col w-96 h-[600px] md:w-[650px] md:h-[520px] shadow-xl rounded-2xl bg-card text-card-foreground">
       {/* Cabeçalho */}
       <CardHeader className="text-center space-y-2">
         <CardTitle className="text-2xl font-semibold tracking-tight">

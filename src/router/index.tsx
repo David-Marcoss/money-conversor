@@ -4,8 +4,8 @@ import { HomePage } from "../pages/home";
 export const RoutesApp = () => {
   return (
     <Routes>
-      <Route path="/home" element={<HomePage />} />
-      <Route path="*" element={<Navigate to="/home" />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

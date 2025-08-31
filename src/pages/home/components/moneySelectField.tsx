@@ -47,7 +47,7 @@ export function MoneySelectField({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[200px] h-12 justify-between bg-card"
+            className="md:w-[200px] h-12 justify-between bg-card"
           >
             {selectedLabel}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
