@@ -1,69 +1,57 @@
-# React + TypeScript + Vite
+##
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div style="display: flex; align-items: center;">
+  <span style="margin-left: 10px; font-size: 24px; font-weight: bold;">Conversor de modedas</span>
+</div>
+<hr>
 
-Currently, two official plugins are available:
+Uma aplicação web desenvolvida com React.js, essa aplicação tem como finalidade servir para converter valores monetarios para diversos tipos de moedas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Acesse o projeto: <a url="https://money-conversor.onrender.com">https://money-conversor.onrender.com</a>
 
-## Expanding the ESLint configuration
+<img src="./public/money-converter.png" alt="home" style="width: 100%;"/>
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Arquitetura da Aplicação:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+A aplicação é composta apenas pelo front-end do projeto que se conecta com a api externa <a url="https://www.exchangerate-api.com">https://www.exchangerate-api.com</a> para aplicar as converções.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Tecnologias Utilizadas no Projeto:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Para a criação da arquitetura da aplicação foram utilizados:
+
+- Docker
+- Docker Compose
+
+Para o Front-end da aplicação foram utilizados:
+
+- React
+- TypeScript
+- TailwindCSS
+- Shadcn
+- Axios
+
+## Rodando o Projeto:
+
+### Dependências:
+
+É necessário ter instalado o Docker e o Docker Compose no seu computador para rodar o projeto.
+
+Para isso, acesse: [Instalar Docker](https://docs.docker.com/engine/install/) e [Instalar Docker Compose](https://docs.docker.com/compose/install/).
+
+### Execultando o projeto:
+
+Por fim dentro da pasta do projeto, abra um terminal e execulte o comando:
+
+```
+ docker-compose up --build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Se tudo ocorrer bem voce deve ser capaz de acessar aplicação no seu navegador acessando a rota:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+ http://localhost:5173/
+```
+
+### Deploy do projeto
+
+<a url="https://money-conversor.onrender.com">https://money-conversor.onrender.com</a>
